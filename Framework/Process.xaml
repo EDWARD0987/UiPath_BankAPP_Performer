@@ -1,0 +1,216 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>902,3005</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="642,2940" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="580,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="580,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: Customer Registration" sap:VirtualizedContainerService.HintSize="580,2480" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" OpenMode="IfNotOpen" ScopeGuid="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="546,2189" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="RegNo" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'CLEAR'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable Accuracy="0.9" CvElementArea="221, 229, 89, 45" CvTextArea="236, 244, 58, 14" CvTextArgument="CLEAR" CvType="Button" DesignTimeRectangle="222, 229, 88, 44" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'CLEAR'" FullSelectorArgument="&lt;wnd ctrlname='Clear' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='Clear' check:text='CLEAR' /&gt;" Guid="78bc221d-33ab-4679-8e09-7f1ebfb8ef66" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAwCAYAAACc2R15AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJYSURBVHhe7Zs9jsIwEEa5lg/k8+Q0bkDcACREhXwAEIiCGhTNZkJ+bMcxm2w8QquveE0yHuLn8SQUXj0eDwJyQLgwEC7MQPj9fqfT6UTH45EOhwOYibW2dhn69YRzAIu+XC70er2oLEswA3Z3vV5rl6F0Tzivyu12iyYB0zmfz3W3cB17wnkrPJ/P6GAwHXbJVe46HgiPDQTzYaeuYwjPDIQLA+HCQLgwEC4MhAsD4cJAuDAQLgyECwPhwogIt0aTUitarRyUIm2sF2d0c08b77pLF5MiHG8LUmP3Kj7mVJoK64+ZS2bhlopWdP3QjWBrSLfXHQGThCdiQmyh3mNqNJng/nhOS6YbqxaRnlV4P9HhJMuykt5I0OZ9LY9wZ9EbVDFlZ/XPGY6bQ0bh/UTHHjScaBbhVTur46sK1bopAFWQdWL+h3Cnb7YV/Ikcwr347pn89jCe020psV06HQHhv+99k4SP4v5e2Lac9uL8xqecShdkvv6l+Q0V3rWTGH3FxnNW1d0txDIvTCaf8C/o4dHYSCGM54zviL+QUfjvv1LaBVlUeGKHdTmal2cqZ3oO08kq3KuQse9w54thSeFJUc6XC7eKZM4ZrTFFZuFvov80q8nqwsQ/z6IEclJUixv7Y9Xj7670Ii7bVkSEgx4IFwbChYFwYSBcGAgXBsKFgXBhIFwYCBcGwoVJCufjEThyshzsMimcDwDxQaDYYDAdPsnGB9Vcx57w9tggB6LS58PuuHA/HhtkOGC/39Nms6H1eg1msN1uabfbDWQzA+EgLxAuDISL8qAfbx2PbQkCNsoAAAAASUVORK5CYII=" InformativeScreenshot="37122bac1ff60770e0ab99b83aefe2a6.png" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Customer Name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Text="[in_TransactionItem.SpecificContent(&quot;Customer&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CvType="InputBox" DesignTimeRectangle="193, 61, 210, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Customer Name'" FullSelectorArgument="&lt;wnd ctrlname='Cname' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='Cname' /&gt;" Guid="14493bf4-0406-41d0-a6cf-79bfb9ba870b" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANYAAAAcCAYAAAAdkEH8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC+SURBVHhe7dMxasNAFEXRWU225k1kcem8CtuNCMSW0PQqJghCGgnbsvW6c+DBwJ/2llprM7N9JyyzwP7DGsexDcPQ+r43s42b27l835Zhzcdpmhqw3dzOubuuhwW87tT93A+rlPL3Ap4lLAgQFgQICwKEBQHCggBhQYCwIEBYECAsCBAWBAgLAoQFAcKCAGFBgLAgQFgQICwIeBgWsN1qWOXwZWZvbhHWx+dx9aOZPbe5oUVYZrbfhGW2+2r7BeTaLYmz3pRnAAAAAElFTkSuQmCC" InformativeScreenshot="931f0eadb388542924ec5812ae423b40.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvTextArgument="Customer Name" CvType="Text" DesignTimeRectangle="43, 64, 118, 18" ElementType="Text" FriendlyName="'Customer Name'" FullSelectorArgument="&lt;wnd ctrlname='lblCname' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='lblCname' check:text='Customer Name' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHoAAAAWCAYAAAAPb4jFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKoSURBVGhD7VjtkSshDEtV1EM3FEMv1JIOONnme83uJHd77+Xgh2YSwGBJYEgez+czbvx9bKMXwTZ6EWyjF8E2ehFsoxfBhdEhemuieTziI8EYG33Qxq6AEJ0hHaCB0u8t+oyLQen71zgx2kdLpJB4NRbGOwOiJrofM1vEMy4off8bstGA9Yf+jzT6LOlAZv8YoQ802kiVs77v/0CjcZoVIgXBgWg+1cpYb/tTj/FcHegkEFD+pa85IdyeRZLKUa8MfMYJqgLKmsb56HC15DGcQ0iViOfL61QE7xBjowWcbzdX4oE5JV4rzylf5MKmDmNGowN0MCpvwh0c5tCN7oy8QhJoZjTPRQLWhLgiFJGOJ1oEa94CmXgpl7Imr5GIypzYECWO3hdtTJqXxIS4HmKpc7brHlCNLuPH+bPRmXdjRF8J7+Awh270eCJPIQlfGj3deYPRs03WtcuaXblX4roNpXEqudF3hccBrdH4znPWmM5oDTw+5XMLhznuP9EkTilNIEalCKZXMQajOzFatOu8LlI+LVTuWpBIMs8bRgNywmSNg9FcidoriJBzvINDjRvxO3c0A2WISk0xPZv5i0bzJqOSl0H5QCyuNhecGUejcxy1dUZzPpRj87bodLmDQ40bMTH6vAzJgv1dc210izZmMFohe2x/XSQ1J2XO140G0tz88Eq6dGsP4+7jMMfUaE4kJa79jq6CDOSpXIFASUhJLri27SiebDKQyzGTx9hLIgH05w/nfvIYe8toQEo45Z0OwMi7vKRz2x0c5jgxmkCvvv6OUf8ZQ4JCAqD+zkgxtrunqPy0ZCCK9GdCsqFqDD6DTK0u74nEbRD89OfVm0bn+LYKiimJA+5quba+ZzS3TTnMcWH0xl/BNnoRbKMXwTZ6EWyjl8AzfgFNLFnR7WxHLQAAAABJRU5ErkJggg==" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'City'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Text="[in_TransactionItem.SpecificContent(&quot;City&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CvType="InputBox" DesignTimeRectangle="193, 95, 210, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'City'" FullSelectorArgument="&lt;wnd ctrlname='City' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='City' /&gt;" Guid="c623cef4-f115-4f37-a8e0-a123dad3b5b9" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANYAAAAcCAYAAAAdkEH8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVHhe7dM7ioVQAETB2bs7cH+mauAPDAQD7+O+YBJhwMHOqqCzTs/Ptm3FzN6dsMwC+w1rXdcyTZOZ/WN935dxHO9hzfNczvMs13WZ2cPt+/6N6xZWra4egOeO4xAWvE1YECAsCBAWBAgLAoQFAcKCAGFBgLAgQFgQICwIEBYECAsChAUBwoIAYUGAsCBAWBAgLAj4M6yu675xmdmz1XaGYbiHtSxLadu2NE1jZg9X26kN3cIys/cmLLPXt5UPmWEv+n+fXlAAAAAASUVORK5CYII=" InformativeScreenshot="f3bf6d9928b76083eecbcd5cdab04de1.png" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Phone Number'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Text="[in_TransactionItem.SpecificContent(&quot;Phone&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CvType="InputBox" DesignTimeRectangle="193, 127, 210, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Phone Number'" FullSelectorArgument="&lt;wnd ctrlname='Phone' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='Phone' /&gt;" Guid="f65e0d72-77a2-49f4-8931-ef3f4bf895d4" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANYAAAAcCAYAAAAdkEH8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVHhe7dM7ioVQAETB2bs7cH+mauAPDAQD7+O+YBJhwMHOqqCzTs/Ptm3FzN6dsMwC+w1rXdcyTZOZ/WN935dxHO9hzfNczvMs13WZ2cPt+/6N6xZWra4egOeO4xAWvE1YECAsCBAWBAgLAoQFAcKCAGFBgLAgQFgQICwIEBYECAsChAUBwoIAYUGAsCBAWBAgLAj4M6yu675xmdmz1XaGYbiHtSxLadu2NE1jZg9X26kN3cIys/cmLLPXt5UPmWEv+n+fXlAAAAAASUVORK5CYII=" InformativeScreenshot="0e3d009e624f4cb8a869670d4cec31a4.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target CvTextArgument="Phone Number" CvType="Text" DesignTimeRectangle="43, 130, 108, 18" ElementType="Text" FriendlyName="'Phone Number'" FullSelectorArgument="&lt;wnd ctrlname='lblPhone' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlname='lblPhone' check:text='Phone Number' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAHAAAAAWCAYAAAAYTRgMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI4SURBVGhD7VfbkcMgDHRV1EM3FEMvtBJ3wAnxEliA7Uku5o6PncQICWkXhL3t+24X5sUScHIsASfHEnByLAEnxxJwcjQENFaJzW7bEUIoq02cp62EMamp77cRc5dWM3YtwQY1GMb2HvwuJ10BhTKH8ZKAJwsIkPpg/+cCAoyyYhNW4Sl8sIBCQJ7H3P6cgK/XizF0BCwSDP8V/MZdn8SNgFOrPJnRLuBkZALPxNit0coqKa0EKM3lFREEhDVQrKqVDjuIlmR9bxeQm5Ii5YbzDclXQE71tULrKewe7Xpqf/4qiLguIHMCcZGQoAGx6A73hGV7Kjy1t5MxHHFQlIbCS/8aWcAUm8y9IyA+B5IxN3gWqaZwrYzqIUL06wn+lLMOrgkI5CM5QwJCsoXYBKM2TGMUhAagf+WTQAWEZ/TPc+8IWPDA1FQKxMSkY8N6OP82ugL6lkHRaH8tAvB/3nkZ1K8fI+5412ooXMF8i68EBPgd7/P4joD5QIzr4fzbuHEHUgwIeJeA7g7Rrt1EQNtxhbN34VHAuIYbe4SA3Xo4/zY+KyBTLKIYH8QoCA1oxUVwAgJCHOFsj2yh5ZqlfxufFRCe/Y6H4mLCjZeYfozQdi6/xJQ230pdPlHAaq7LzdkrMu8I6NZILzmFfVQPw0cHHxcwFjD8jOjGAJLcC1S4L85+Rhxtmdy0PgiCBOI4kKzo2n7+HQHdW2qqmW7g6NOsh+Gjg4aAC7NgCTg5loCTYwk4OZaAU2O3Pz4hVb8t4ahMAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image, CV" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Email'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="484,218" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Text="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable CvType="InputBox" DesignTimeRectangle="193, 164, 210, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Email'" FullSelectorArgument="&lt;wnd ctrlname='Email' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='Email' /&gt;" Guid="78a66c73-1f16-4259-9f57-99b6033cf689" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAANYAAAAcCAYAAAAdkEH8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVHhe7dM7ioVQAETB2bs7cH+mauAPDAQD7+O+YBJhwMHOqqCzTs/Ptm3FzN6dsMwC+w1rXdcyTZOZ/WN935dxHO9hzfNczvMs13WZ2cPt+/6N6xZWra4egOeO4xAWvE1YECAsCBAWBAgLAoQFAcKCAGFBgLAgQFgQICwIEBYECAsChAUBwoIAYUGAsCBAWBAgLAj4M6yu675xmdmz1XaGYbiHtSxLadu2NE1jZg9X26kN3cIys/cmLLPXt5UPmWEv+n+fXlAAAAAASUVORK5CYII=" InformativeScreenshot="64e1984a3f8ac9212a147a3ad5085c07.png" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'SUBMIT'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable CvElementArea="80, 229, 95, 44" CvTextArea="95, 244, 64, 14" CvTextArgument="SUBMIT" CvType="Button" DesignTimeRectangle="81, 229, 95, 44" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'SUBMIT'" FullSelectorArgument="&lt;wnd ctrlname='Submit' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='Submit' check:text='SUBMIT' /&gt;" Guid="c7b2a9a6-a55c-48d2-b885-7505e221122f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGMAAAAwCAYAAAAFIcTMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKwSURBVHhe7ZtNjgIhEEa9FgfiPJyGjcYbaGJcGQ6g0bhwrTE1VDc0RYM643TPVNpavIU2IHxPfnrB7HK5gMADkcEIkcGIQsb5fIbdbgfb7RY2m40wAs65Jud+9pkMLIASDocD3G43uN/vwsBgrsfjscm5LySTgcZOp1O1EWFY9vt9swLR/DMZOIWu12u1sjAsmDPODpp/IaNWURgHzJvmLzL+EZHBCJHBCJHBCJHBCJHBCJHBCJHBCJHBCJHBCJHBiFFlOGtAqxnMZhQFShuwLpWzOjzTNqvfYkGHutr2yhe0bTtSPyv7on2k/Q0HJvRbGQfOqNTGQzTYou2fMZ4Mq0MnlR+gC987H04cWOr82zKy8th2+F4lIbk4BYb8CRq6frbUZGTlnz77HSPJSB0uA07hxsEMI8PjDKimbAo9l9EPkPQzMHkZdNmo8Zcy6KxJ5RMTlOHx0z8NFNdyDcZ6Mf1lwjOMjO8sU0gS1e0FyvcvPJ+mjAYfkPFS4izpoPvIL2TUUF46EZ4E6e4w0YZIQ/UHjVB/wjJ6OAum28DTYN6W0SuPp7f8H05l+BNcNxP8zMmWtP5vfIKMAA0Il5O0XJD1PELW9VcysmehrexzZY9oy01ZRiVAShFmd7ysnNUrz96WQYKMtIFOfGZ0IeAyQN8zuheotJE2YcSQfGjxhZAuOzT4RzIcOTQUsyjIyd8rYh8+YJlqwvEnlTT4MAi/mdI38BY/SL+flMtIvtkjSXQF3MBrh4MogwSfZH6ADOFniAxGiAxGiAxGiAxGiAxGiAxGiAxGiAxGiAxGiAxGPJWB15rkGtnfgDk/lYEX/vDiX62yMCx44xUvtNL8Mxnx6jEWlBkyDpgr/uFfXj1GsMB6vYbFYgHz+VwYmOVyCavVqhCBFDKE/0NkMEJksOECXzIbz76DKj+uAAAAAElFTkSuQmCC" InformativeScreenshot="26ec4a2e591fe2858c7f411681044e3f.png" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NGetText DisplayName="Get Text 'RegNo'" sap:VirtualizedContainerService.HintSize="484,157" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="330e5a4d-6354-407a-b7ed-e06ae8d1e734" TextString="[RegNo]" Version="V3">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable CvType="AnyWordGroup" DesignTimeRectangle="46, 343, 312, 29" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'575436'" FullSelectorArgument="&lt;wnd ctrlname='RegNo' /&gt;" FuzzyAccuracy="0.9" FuzzySelectorArgument="&lt;wnd ctrlname='RegNo' /&gt;" Guid="9bfb2ca0-f328-4e13-b589-16b41f54eea2" ImageBase64="" InformativeScreenshot="89704cab48d17108cbec1e3fe6c87f73.png" ScopeSelectorArgument="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+              </uix:NGetText.Target>
+            </uix:NGetText>
+            <umab:OutlookApplicationCard Account="edwarddoku123@gmail.com" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Desktop Outlook App" sap:VirtualizedContainerService.HintSize="484,451" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_1">
+              <umab:OutlookApplicationCard.Body>
+                <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,267" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;Dear &quot;  + in_TransactionItem.SpecificContent(&quot;Customer&quot;).ToString + &quot;, Your registration is complete. Your registration number is &quot; +  RegNo  + &quot;.&quot;]" ContinueOnError="True" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="USER REGISTRATION COMPLETED" To="[in_TransactionItem.SpecificContent(&quot;Email&quot;).ToString]">
+                      <ui:SendOutlookMail.Files>
+                        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                      </ui:SendOutlookMail.Files>
+                    </ui:SendOutlookMail>
+                  </Sequence>
+                </ActivityAction>
+              </umab:OutlookApplicationCard.Body>
+            </umab:OutlookApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="1140, 503, 465, 418" FilePath="[in_Config(&quot;ApplicationPath&quot;).ToString]" IconBase64="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" InformativeScreenshot="2ec48e637c7629cd0ca485e660f60104.png" Selector="&lt;wnd app='bankapp.exe' ctrlname='Form1' /&gt;" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
